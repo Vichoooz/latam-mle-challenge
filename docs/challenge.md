@@ -261,9 +261,12 @@ https://api-service-925962362876.us-central1.run.app
 3. Deployment a Cloud Run
 4. Verificación de health endpoint
 
+No se incluyó la ejecución del stress-test dentro del pipeline de CD, ya que este tipo de prueba está orientada a validación manual o de performance previa, y no a un proceso de despliegue automático.
+
 **Secrets configurados**:
 - `GCP_PROJECT_ID`
 - `GCP_SA_KEY` (Service Account JSON)
+- `GCP_REGION`
 
 ![alt text](secrets.png)
 
