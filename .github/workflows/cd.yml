@@ -2,8 +2,10 @@ name: 'Continuous Delivery'
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "**"]
 
+  pull_request:
+    branches: ["main" ]
 jobs:
   deploy:
     runs-on: ubuntu-latest
