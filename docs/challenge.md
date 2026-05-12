@@ -67,7 +67,7 @@ La función calculaba el inverso del porcentaje esperado (ej: Houston mostraba 1
 
 La selección de los 10 features más importantes no coincide exactamente con los primeros 10 según la métrica de importancia. En particular, la variable esperada dentro del ranking 'MES_6', no fue incluida, mientras que 'OPERA_Copa Air' si lo fue. Se asume que esta decisión responde a un criterio de diseño o limpieza del modelo, posiblemente con el objetivo de evitar una sobre-representación de variables relacionadas con el mes (MES_*) o reducir redundancia en el set de features. Dado que se trata de un challenge, se considera razonable asumir esta decisión sin requerir validación adicional, aunque en un entorno productivo sería necesario consultar la justificación detrás de esta selección. 
 
-![alt text](top-11 features.png)
+![alt text](<top-11 features.png>)
 
 ### Modelo Seleccionado: XGBoost
 
