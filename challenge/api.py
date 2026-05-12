@@ -11,12 +11,9 @@ VALID_MES = set(range(1, 13))
 VALID_TIPOVUELO = {"N", "I"}
 
 #Train the model when the API starts
-
-
 data = pd.read_csv("data/data.csv")
 features, target = model.preprocess(data, target_column="delay")
 model.fit(features, target)
-
 
     
 @app.get("/health", status_code=200)
