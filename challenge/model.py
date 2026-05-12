@@ -27,7 +27,7 @@ class DelayModel:
             or
             pd.DataFrame: features.
         """
-        data = data.copy(Deep=True)
+        data = data.copy(deep=True)
         
         if 'Fecha-I' in data.columns and 'Fecha-O' in data.columns:
             data['high_season'] = data.apply(lambda x: is_high_season(x['Fecha-I']), axis=1)
