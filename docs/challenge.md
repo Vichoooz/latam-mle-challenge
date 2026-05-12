@@ -169,7 +169,8 @@ Se crea el .github y se empeiza a trabajar en workflows ci-cd:
 
 ci:
 
-Verificara que todo este correcto, se correran los make api-test y model-test. No es necesario el make stress-test. Se correra en todas las ramas.
+Verificara que todo este correcto, se correran los make api-test y model-test. No es necesario el make stress-test. Se correra en todas las ramas cuando se haga un push o PR. Se hace simple el el ci, se podria separar en job para mejor legibilidad de donde ocurre el error si es que ocurre pero al ser un proyecto pequeño no es necesario ya que de todas formas si uuno se mete al github action se ve claramente que paso esta ocurriendo.
+
 
 cd:
 
