@@ -1,5 +1,6 @@
 # syntax=docker/dockerfile:1.2
-FROM python:latest
+# FROM python:latest   #Muy nueva la versión de python para el proyecto
+FROM python:3.10-slim
 # put you docker configuration here
 WORKDIR /app
 

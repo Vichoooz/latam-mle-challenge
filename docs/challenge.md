@@ -127,7 +127,46 @@ Al ejecutar make api-test:
 
 Part III:
 
-Se seleciono GCP para desplegarsela API
+Se seleciono GCP para desplegarsela API, se utilizo CloudRun por sencilles para el proyecto, tambien podria haberse hecho en una VM directamente. Para este caso challenger el modelo es sencillo y la api tambien se hara con cloudrun por sencilles.
+
+Se ejecuta el comando 
+
+gcloud run deploy api-service \
+  --source . \
+  --region us-central1 \
+  --allow-unauthenticated
+
+Service URL: https://api-service-925962362876.us-central1.run.app
+
+Se hacen peticiones con Postman para ver su funcionamiento antes de hacer el make stress-test
+/health :
+
+![alt text](health-api.png)
+
+/predict: Se usaron 3 flights distintos (la api puede manejar mas de una solicitud de vuelo ya que se asume que no van a llegar de 1 en 1 si no una lista).
+
+![alt text](predict-api.png)
+
+make stress-test:
+
+![alt text](make-stress-test.png)
+
+4256 requests
+0 fallas (0.00%)
+~71 requests/second
+Avg: 418 ms
+
+PercentilSignificado
+50%La mitad de las requests tarda < 380 ms
+90% 9 de cada 10 requests tarda < 780 ms
+99%Casi todas < 1 segundo
+100% Peor caso = 1.4 s
+Se podia intentar mejorar dependiendo del contexto del negocio y cuantas solicitudes se recibiran. Todo depende del negocio y las necesidades, al ser un challegnger asumimos uqe los rsulados son buenos (casi todo se demora menos de un segundo.)
+
+Part IV:
+
+
+
 
 Extras:
 
