@@ -3,13 +3,13 @@ name: Continuous Integration
 on:
   push:
     branches:
-      - "**"   # todas las ramas
+      - "**"
   pull_request:
     branches:
-      - "**"   # todos los PRs
+      - "**"
 
 jobs:
-  Test:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,15 +21,25 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Install dependencies
+      - name: Create virtual environment
         run: |
+          python -m venv .venv
+          source .venv/bin/activate
           python -m pip install --upgrade pip
-          pip install --upgrade pytest anyio
+
           pip install -r requirements.txt
           pip install -r requirements-test.txt
+          pip install -r requirements-dev.txt
+
+          pip install "pytest==6.2.5"
+          pip install "anyio<4"
+
+      - name: Run API tests
+        run: |
+          source .venv/bin/activate
+          make api-test
 
       - name: Run model tests
-        run: make model-test 
-        
-      - name: Run API tests
-        run: make api-test
+        run: |
+          source .venv/bin/activate
+          make model-test
