@@ -149,7 +149,7 @@ Se hacen peticiones con Postman para ver su funcionamiento antes de hacer el mak
 
 make stress-test:
 
-![alt text](make-stress-test.png)
+![alt text](make stress-test.png)
 
 4256 requests
 0 fallas (0.00%)
@@ -165,8 +165,18 @@ Se podia intentar mejorar dependiendo del contexto del negocio y cuantas solicit
 
 Part IV:
 
+Se crea el .github y se empeiza a trabajar en workflows ci-cd:
+
+ci:
+
+Verificara que todo este correcto, se correran los make api-test y model-test. No es necesario el make stress-test. Se correra en todas las ramas cuando se haga un push o PR. Se hace simple el el ci, se podria separar en job para mejor legibilidad de donde ocurre el error si es que ocurre pero al ser un proyecto pequeño no es necesario ya que de todas formas si uuno se mete al github action se ve claramente que paso esta ocurriendo.
 
 
+cd:
+
+Se correra solo en la rama main (se podria hacer que se corra en develop y main y que se suba a distintos lados pero por simplicidad solo sera en la rama main.)
+
+Variables secretas: ![alt text](secrets.png)
 
 Extras:
 
