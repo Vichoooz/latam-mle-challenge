@@ -27,27 +27,31 @@ class DelayModel:
             or
             pd.DataFrame: features.
         """
-        data = data.copy(deep=True)
-
-        data['high_season'] = data.apply(lambda x: is_high_season(x['Fecha-I']), axis=1)
-        data['period_day'] = data.apply(lambda x: get_period_day(x['Fecha-I']), axis=1)
-        data['min_diff'] = data.apply(lambda x: get_min_diff(x), axis=1)
-        data['delay'] = np.where(data['min_diff'] > 15, 1, 0)
-
+        if 'Fecha-I' in data.columns and 'Fecha-O' in data.columns:
+            data['high_season'] = data.apply(lambda x: is_high_season(x['Fecha-I']), axis=1)
+            data['period_day'] = data.apply(lambda x: get_period_day(x['Fecha-I']), axis=1)
+            data['min_diff'] = data.apply(lambda x: get_min_diff(x), axis=1)
+            data['delay'] = np.where(data['min_diff'] > 15, 1, 0)
+    
+        # One-hot encode
         features = pd.concat([
             pd.get_dummies(data['OPERA'], prefix='OPERA'),
             pd.get_dummies(data['TIPOVUELO'], prefix='TIPOVUELO'),
             pd.get_dummies(data['MES'], prefix='MES')
         ], axis=1)
-
-       
-        # Solo seleccionamos las 10 features más importantes
+    
+        # Rellenar features faltantes con 0
+        for col in top_10_features:
+            if col not in features.columns:
+                features[col] = 0
+                
+        # Seleccionar top 10 features
         features = features[top_10_features]
-
+    
         if target_column:
             target = data[[target_column]]
             return features, target
-        
+    
         return features
         
 
