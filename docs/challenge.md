@@ -98,11 +98,34 @@ Se modifico en test_model.py self.data = pd.read_csv(filepath_or_buffer="data/da
 
 En test_model cuando se llamaba a la funcion test_model_predict se hacia el preprocess y el predict, saltandoce el fit. Si no se hacia el fit antes no habia nada que rpedecir y fallaba. Se agrego al linea dodne se hace el fit antes de predecir esto ocurre pq los test son independientes.
 
+Se separa si el preprocess viene para training o para predecir, si viene para predecir se rellena con 0 los datos faltantes del top 10 feature . (si no no se podria evaluar y tiene sentido pq significa que no son )
 al ejecutar make model-test
 
 ![alt text](make model-test.png)
 
 Part II:
+
+model = DelayModel()
+
+# Valores válidos
+VALID_MES = set(range(1, 13))
+VALID_TIPOVUELO = {"N", "I"}
+
+#Train the model when the API starts
+
+
+data = pd.read_csv("data/data.csv")
+features, target = model.preprocess(data, target_column="delay")
+model.fit(features, target)
+
+Se crean validaciones para que no entren datos a predecir que no tengan sentido (mes distino a 1 - 12 o algun tipo de vuelo distinto a n o I ).
+Al iniciar la api se entrena el modelo automaticamente con el data.csv que se tenia con los mismos pasos de la Part I. se inicia con DelayModel(). Se trata de utilizar las misma clase creada en Part I. 
+
+Al ejecutar make api-test:
+
+![alt text](make api-test.png)
+
+Part III:
 
 
 Extras:
