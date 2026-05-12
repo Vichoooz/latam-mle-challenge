@@ -127,6 +127,7 @@ Al ejecutar make api-test:
 
 Part III:
 
+Se seleciono GCP para desplegarsela API
 
 Extras:
 
