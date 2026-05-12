@@ -176,8 +176,7 @@ cd:
 
 Se correra solo en la rama main (se podria hacer que se corra en develop y main y que se suba a distintos lados pero por simplicidad solo sera en la rama main.)
 
-
-
+Variables secretas: ![alt text](secrets.png)
 
 Extras:
 
